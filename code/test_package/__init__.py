@@ -15,7 +15,7 @@ def score_checker(type, data, target, alpha):
         avg_rmse = np.mean(rmse_score)
 
         print(f'Alpha : {alpha}')
-        print(f'Ridge Negative MSE score : {np.round(mse_score, 3)}')
+        print(f'Ridge Negative MSE score : {np.abs(np.round(mse_score, 3))}')
         print(f'Ridge RMSE scores : {np.round(rmse_score, 3)}')
         print(f'Ridge AVG RMSE : {avg_rmse:.3f}\n')
 
@@ -26,7 +26,7 @@ def score_checker(type, data, target, alpha):
         avg_rmse = np.mean(rmse_score)
 
         print(f'Alpha : {alpha}')
-        print(f'Lasso Negative MSE score : {np.round(mse_score, 3)}')
+        print(f'Lasso Negative MSE score : {np.abs(np.round(mse_score, 3))}')
         print(f'Lasso RMSE scores : {np.round(rmse_score, 3)}')
         print(f'Lasso AVG RMSE : {avg_rmse:.3f}\n')
 
@@ -37,7 +37,7 @@ def score_checker(type, data, target, alpha):
         avg_rmse = np.mean(rmse_score)
 
         print(f'Alpha : {alpha}')
-        print(f'Elastic Negative MSE score : {np.round(mse_score, 3)}')
+        print(f'Elastic Negative MSE score : {np.abs(np.round(mse_score, 3))}')
         print(f'Elastic RMSE scores : {np.round(rmse_score, 3)}')
         print(f'Elastic AVG RMSE : {avg_rmse:.3f}')
 
