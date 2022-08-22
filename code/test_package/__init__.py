@@ -10,7 +10,7 @@ from sklearn.model_selection import cross_val_score
 def score_checker(type, data, target, alpha):
     if type == 'ridge':
         type = Ridge(alpha)
-        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error")
+        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error", cv=5)
         rmse_score = np.sqrt(-1 * mse_score)
         avg_rmse = np.mean(rmse_score)
 
@@ -21,7 +21,7 @@ def score_checker(type, data, target, alpha):
 
     elif type == 'lasso':
         type = Lasso(alpha)
-        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error")
+        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error", cv=5)
         rmse_score = np.sqrt(-1 * mse_score)
         avg_rmse = np.mean(rmse_score)
 
@@ -32,7 +32,7 @@ def score_checker(type, data, target, alpha):
 
     elif type == 'elastic':
         type = ElasticNet(alpha)
-        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error")
+        mse_score = cross_val_score(type, data, target, scoring="neg_mean_squared_error", cv=5)
         rmse_score = np.sqrt(-1 * mse_score)
         avg_rmse = np.mean(rmse_score)
 
