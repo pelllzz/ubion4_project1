@@ -67,10 +67,9 @@ def find_best_alpha(type, data, target):
     grid_search.fit(data, target)
 
     # Best alpha
-    print(f'Type : {type}')
-    print(grid_search.best_params_)
+    # print(f'Best alpha : {grid_search.best_params_}')
 
-    # Best MSE & RMSE
+    # Best alpha & MSE & RMSE
     MSE = np.abs(grid_search.best_score_)
     RMSE = np.sqrt(np.abs(MSE))
-    print(f'MSE : {MSE} | RMSE: {RMSE}')
+    print(f'Type : {type} | {grid_search.best_params_} | MSE : {MSE} | RMSE: {RMSE}')
