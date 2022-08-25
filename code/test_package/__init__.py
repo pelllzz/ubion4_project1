@@ -1,3 +1,4 @@
+import sched
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -119,3 +120,40 @@ def check_coeff(type, data, target, alpha):
     type_x_alpha = alphas
     sort_column = 'alpha: '+str(type_x_alpha[0])
     print(coeff_df.sort_values(by=sort_column, ascending=False))
+
+
+def alpha_master(type, data, target):
+    a = 0.01 # 최초 알파값
+    alpha_list = [] # 알파 후보 담을 리스트
+
+    if type == 'ridge':
+        model_test = Ridge()
+    elif type == 'lasso':
+        model_test = Lasso()
+    elif type == 'elastic':
+        model_test = ElasticNet()
+    else:
+        print(f'Check the type values')
+
+    for i in range(0,100):
+        a = round(a, 2)
+        alpha_list.append(a)
+        a += 0.01
+
+    # grid search 수행
+    grid_search = GridSearchCV(model_test, param_grid={'alpha' : alpha_list})
+    grid_search.fit(data, target)
+
+    # Best alpha
+    # print(f'Best alpha : {grid_search.best_params_}')
+
+    # Best alpha & MSE & RMSE
+    MSE = np.abs(grid_search.best_score_)
+    RMSE = np.sqrt(np.abs(MSE))
+    print(f'Type : {type} | {grid_search.best_params_} | MSE : {MSE} | RMSE: {RMSE}')
+
+    # Get Best Alpha
+    best_alpha = grid_search.best_params_['alpha']
+
+    # Is it right?
+    score_checker(type, data, target, best_alpha)
